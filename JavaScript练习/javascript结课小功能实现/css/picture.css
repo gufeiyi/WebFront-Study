@@ -1,0 +1,63 @@
+/* 轮播图用的样式 */
+/* 去除默认样式 */
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* 设置外部容器 */
+#outer{
+    width: 520px;
+    height: 333px;
+    margin: 50px auto;
+    background-color: pink;
+    padding: 10px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+#imgList{
+    /* 去除默认的小点 */
+    list-style: none;
+    /* 之所以横不过来，是因为外部容器不够大，
+        溢出了，就在下面排列了 */
+        /* 已经在js中动态设置了 */
+    /* width: 2600px; */
+    /* 相对于outer容器定位 */
+    position: absolute;
+    /* 设置偏移量的初始量 */
+    left: 0;
+}
+
+#imgList li{
+    float: left;
+    /* 让整个照片在中间显示 */
+    margin: 0 10px;
+}
+
+/* 导航按钮 */
+#navDiv{
+    /* 相对于outer容器定位 */
+    position: absolute;
+    /* 设置位置 */
+    bottom: 15px;
+    /* 已经设置了动态居中 */
+    /* left: 197px; */
+}
+
+/* 设置导航点 */
+#navDiv a{
+    float: left;
+    width: 15px;
+    height: 15px;
+    background-color: rgb(14, 174, 238);
+    border-radius: 50%;
+    margin: 0 5px;
+    opacity: 0.3;
+    /* 兼容IE8透明 */
+    filter: alpha(opacity=30);
+}
+
+#navDiv a:hover{
+    background-color: rgb(13, 13, 201);
+}

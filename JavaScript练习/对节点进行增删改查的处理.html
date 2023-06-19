@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0"> -->
+    <title>增删改查练习</title>
+    <link rel="stylesheet" href="./css/css.css">
+
+    <script type="text/javascript">
+        // 删除tr的函数
+        // 我们把删除的函数提取出来了,这样,需要删除某个tr时候,可以直接调用函数
+        function delAll(){
+
+            var tr = this.parentNode.parentNode;
+
+            // 显示提示姓名信息
+            // 获取要删除的员工姓名
+            var name = tr.children[0].innerHTML;
+
+            // 显示提示框
+            var flag = confirm("确认删除"+name+"吗?");
+
+            // 用户点击确认,删除
+            if(flag){
+                // 注意:这个tr不是tr父元素的所有子元素,
+                // 就是我们选中的要删除的那个元素
+                tr.parentNode.removeChild(tr);
+            }
+
+        }
+
+        window.onload = function(){
+            // 点击deleta的超链接后，删除员工信息
+
+            // 先获取deleta的超链接
+            var allDelate = document.getElementsByTagName('a');
+            
+            // 为每个删除的超链接绑定单击响应函数
+            for(var i = 0; i < allDelate.length ; i++){
+                allDelate[i].onclick = delAll;
+            }
+
+            // 添加员工的功能实现
+            // 点击submit之后,将员工的信息添加到表单
+
+            // 获取submit
+            var addEmpButton = document.getElementById('addEmpButton');
+            
+            addEmpButton.onclick = function (){
+            // 添加tr的函数
+            // 获取用户添加的员工信息
+            // 获取name、email、salary
+            // 也就是输入框里面的value值
+            var name = document.getElementById('empName').value;
+            var email = document.getElementById('email').value;
+            var salary = document.getElementById('salary').value;
+            
+            // 接下来这个方法有点笨，但是练习一下如何操纵DOM，一步一步的生成HTML结构
+
+            // 要创建的结构
+            /* <tr>
+                    <td>name</td>
+                    <td>email</td>
+                    <td>Salary</td>
+                    <td><a href="javascript:;">Delete</a></td>
+                </tr>
+            */
+           // 创建一个tr
+            var tr = document.createElement('tr')
+
+            // 创建四个td
+            var nameTd = document.createElement('td');
+            var emailTd = document.createElement('td');
+            var salaryTd = document.createElement('td');
+            var aTd = document.createElement('td');
+
+            // 创建一个a元素
+            var a = document.createElement('a');
+
+            // 创建文本节点
+            var nameText = document.createTextNode(name);
+            var emailText = document.createTextNode(email);
+            var salaryText = document.createTextNode(salary);
+            var delText = document.createTextNode('Delete');
+
+            // 把文本节点放到td中
+            nameTd.appendChild(nameText);
+            emailTd.appendChild(emailText);
+            salaryTd.appendChild(salaryText);
+            // 把delete放到a标签中
+            a.appendChild(delText);
+            // 把a标签放到td中
+            aTd.appendChild(a);
+
+            // 把四个td放到tr中
+            tr.appendChild(nameTd);
+            tr.appendChild(emailTd);
+            tr.appendChild(salaryTd);
+            tr.appendChild(aTd);
+
+            // 给a添加属性
+            a.href = "#";
+
+            // 给新增加的a绑定单击删除函数
+            a.onclick = delAll;
+
+            // 最后把生成好的新tr放到table的tbody中
+
+            // 获取table
+            var employeeTable = document.getElementById('employeeTable');
+            // 获取table的tbody
+            // 注意：用tag获得的标签返回的是类数组
+            var tbody = employeeTable.getElementsByTagName('tbody')[0];
+            // 将tr添加到tbody中
+            tbody.appendChild(tr);
+
+        };
+    }
+
+    </script>
+</head>
+<body>
+    <table id="employeeTable">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Salary</th>
+            <th>handle</th>
+        </tr>
+        <tr>
+            <td>Tom</td>
+            <td>tom@tom.com</td>
+            <td>5000</td>
+            <td><a href="#">Delete</a></td>
+
+        </tr>
+        <tr>
+            <td>Jerry</td>
+            <td>Jerry@163.xom</td>
+            <td>8000</td>
+            <td><a href="#">Delete</a></td>
+        </tr>
+        <tr>
+            <td>Bob</td>
+            <td>bob@qq.com</td>
+            <td>10000</td>
+            <td><a href="#">Delete</a></td>
+        </tr>
+    </table>
+    
+    <div id="formDiv">
+        <h4>add new employee</h4>
+
+        <table>
+            <tr>
+                <td class="word">name:</td>
+                <td class="inp">
+                    <input type="text" name="empName" id="empName">
+                </td>
+            </tr>
+            <tr>
+                <td class="word">email:</td>
+                <td class="inp">
+                    <input type="text" name="email" id="email">
+                </td>
+            </tr>
+            <tr>
+                <td class="word">salary:</td>
+                <td class="inp">
+                    <input type="text" name="salary" id="salary">
+                </td>
+            </tr>
+            <tr>
+                <!-- colspan:   
+                        默认值：1
+                        合并几行，占几行，不能超过1000 -->
+                <!-- align： 
+                        在单元格的位置，center为居中-->
+                <td colspan="2" align="center">
+                    <button id="addEmpButton" value="">
+                        submit
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+</body>
+</html>

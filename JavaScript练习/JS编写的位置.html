@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>javascript编写的位置</title>
+    </head>
+
+    <script type="text/javascript" >
+        // js可以写在script标签中,一开启界面就执行
+        alert('开始吧')
+    </script>
+
+    <!-- 可以写在外部文件中,不同的页面都可以引用,也可以利用浏览器的缓存机制 -->
+    <!-- script标签一旦引入外部js,里面就不能写代码了,会被浏览器忽略 -->
+    <script type="text/javascript" src="./js/script.js"></script>
+    <body>
+        <!-- 属于结构和行为耦合，不方便维护，不推荐使用 -->
+        <!-- js可以写在onclick标签中 -->
+        <button onclick="alert('点我干嘛~')">点我一下</button>
+        <!-- js可以写在href属性中 -->
+        <a href="javascript:alert('让你点就点')">你也点我一下</a>
+        <a href="javascript:;">点吧</a>
+
+    </body>
+</html>

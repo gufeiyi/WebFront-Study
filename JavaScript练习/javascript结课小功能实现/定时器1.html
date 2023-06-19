@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单向定时器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: salmon;
+            position: absolute;
+            /* ie8不设置就是auto，无法计算 */
+            left: 0;
+        }
+
+        .line {
+            width: 0;
+            height: 1000px;
+            border-left: 1px solid black;
+            position: absolute;
+            left: 800px;
+            top: 0;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var box1 = document.getElementById('box1');
+            var btn01 = document.getElementById('btn01');
+            // 定义timer，不能放到setInterval里面，因为，建一个新的timer，
+            // 立马就把新建的timer消除了，根本没有消除下面的定时器
+            var timer;
+            btn01.onclick = function () {
+
+
+                clearInterval(timer);
+                timer = setInterval(function () {
+                    var oldValue = parseInt(getStyle(box1, "left"));
+
+                    var newValue = oldValue + 1;
+
+                    // 判断newValue是否大于800
+                    // 确保最后一定到终点线，而不是越线一段距离
+                    if (newValue > 800) {
+                        newValue = 800;
+                    }
+
+                    // 将新值设置给box1
+                    box1.style.left = newValue + 'px';
+
+                    // 等到了800，关闭定时器，让小方块停下来
+                    if (newValue == 800) {
+                        clearInterval(timer);
+                    }
+                }, 30);
+            };
+
+        };
+
+        // 获取元素当前样式的函数
+        /* 
+            参数：
+                obj： 元素
+                name： 要获取的样式名 */
+        function getStyle(obj, name) {
+            // 正常浏览器获得样式的方法
+            if (window.getComputedStyle) {
+                return getComputedStyle(obj, null)[name];
+            } else {
+                // IE8的方式
+                return obj.currentStyle[name];
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button id="btn01">点击按钮以后box1向右移动</button>
+
+    <br><br>
+
+    <div id="box1"></div>
+
+    <!-- 右边的终点线 -->
+    <div class="line"></div>
+</body>
+
+</html>

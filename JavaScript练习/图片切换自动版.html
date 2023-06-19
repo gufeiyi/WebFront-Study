@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片切换自动版</title>
+    <script type="text/javascript">
+        window.onload = function(){
+            var img = document.getElementsByTagName('img')[0];
+            var imgArr = ["./img/1.jpg","./img/2.jpg","./img/3.jpg","./img/4.jpg","./img/5.jpg"]
+
+            var index = 0;
+
+            var timer;
+
+            var start = document.getElementById('start');
+            start.onclick = function(){
+                clearInterval(timer);
+
+                timer = setInterval(function(){
+                    // 切换下一张
+                    // 播放的顺序是1 2 3 4 0
+                    index++;
+
+                    if(index >= imgArr.length ){
+                        index = 0
+                    }
+                    img.src = imgArr[index];
+                },1000);
+            };
+
+            // 点击停止以后，让定时器停下来
+            var stop = document.getElementById('stop');
+            stop.onclick = function(){
+                clearInterval(timer);
+            }
+        }
+    </script>
+</head>
+<body>
+    <img id="img1" src="./img/1.jpg" alt="">
+    <br><br>
+    <button id="start">开始</button>
+    <button id="stop">停止</button>
+</body>
+</html>

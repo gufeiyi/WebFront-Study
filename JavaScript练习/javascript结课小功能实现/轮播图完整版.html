@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <link rel="stylesheet" href="./css/picture.css">
+    <script type="text/javascript" src="./js/tool.js"></script>
+    <script type="text/javascript">
+        window.onload = function(){
+            // 获取照片的外部容器
+            var imgList = document.getElementById('imgList');
+
+            // 获取每个照片
+            // imgArr是所有的照片，是个数组
+            var imgArr = document.getElementsByTagName('img');
+            // 为了能让照片横着排放，一定要给imglist设置一个宽度，根据图片的个数动态的加
+            // 一个照片的宽度加padding为520
+            imgList.style.width = 520*imgArr.length+"px";
+
+            // 让导航点居中
+
+            // 获取导航点的外部框
+            var navDiv = document.getElementById('navDiv');
+            var outer = document.getElementById('outer');
+
+            // 设置navDive的left值
+            // 就是剩下的空白地儿在导航点框左右两边平分
+            navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth)/2 + "px";
+
+            // 默认显示图片的索引
+            var index = 0;
+
+            // 获取所有的a,也就是导航点
+            var allA = document.getElementsByTagName('a');
+            // 给第一张图设置默认选中的样式
+            allA[index].style.backgroundColor = 'blue';
+
+            /* 
+                设置点超链接切换到指定的图片
+            */
+
+            // 给超链接绑定单击响应函数
+            // 注意:单击响应事件和for循环执行的时间不同步,
+                // for循环一上来就执行完了,单击响应事件电机的时候才起作用
+                // 所以,点击的时候i已经 = 5了
+            for(var i = 0 ; i <allA.length ; i++ ){
+                // 给每个超链接标识，知道是第几个超链接
+                // 可以理解为超链接的身份证
+                allA[i].num = i;
+                allA[i].onclick = function(){
+
+                    // 点击超链接的时候要暂停自动播放,切换完之后再继续播放
+                    clearInterval(timer);
+                    // 获取超链接的索引，知道是第几个超链接
+                    index = this.num;
+                    setA();
+
+                    // 使用move切换图片
+                    move(imgList ,"left" , -520*index , 50 , function(){
+                        autoChange();
+                    })
+
+
+                }
+            };
+
+            // 掉用自动切换图片的函数
+            autoChange();
+
+            // 创建一个方法，设置选中的a
+            // 使用障眼法，让照片从第五张翻到第一张时候不会需要倒带到第一张，而是直接显示
+            function setA(){
+                // 现在最后一张和第一张是一样的，当显示最后一张，瞬间切换成第一张
+                if(index >= imgArr.length - 1){
+                    index = 0;
+                    imgList.style.left = 0 ;
+                }
+                // 将所有的a颜色设置为rgb(14, 174, 238)
+                // 将选中的a设置为rgb(13, 13, 201)
+                for(var i = 0 ; i<allA.length;i++){
+                    // 设置为空串，意思就是没内联样式了，就会显示默认的样式
+                    allA[i].style.backgroundColor = "";
+                }
+
+                allA[index].style.backgroundColor = "rgb(13, 13, 201)";
+            };
+
+            // 定时器的标识
+            var timer;
+
+            // 自动切换图片
+            function autoChange(){
+                timer = setInterval(function(){
+                    index++;
+
+                    // 让index从0-(imgArr.length-1)不断变化
+                    index %= imgArr.length;
+
+                    // 切换动画
+                    move(imgList , 'left' , -520*index , 20 , function(){
+                        setA();
+                    });
+
+                    // 不要忘记时间
+                },3000);
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- 外部容器 -->
+    <div id="outer">
+        <!-- 放所有图片的容器 -->
+        <ul id="imgList">
+            <li><img src="../img/1.jpg" alt=""></li>
+            <li><img src="../img/2.jpg" alt=""></li>
+            <li><img src="../img/3.jpg" alt=""></li>
+            <li><img src="../img/4.jpg" alt=""></li>
+            <li><img src="../img/5.jpg" alt=""></li>
+            <li><img src="../img/1.jpg" alt=""></li>
+        </ul>
+
+        <!-- 放所有导航点的容器 -->
+        <div id="navDiv">
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+            <a href="#"></a>
+        </div>
+    </div>
+</body>
+</html>

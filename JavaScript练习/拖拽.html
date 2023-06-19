@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拖拽</title>
+    <style>
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            /* 开启绝对定位之后才可以移动小方块 */
+            position: absolute;
+        }
+    </style>
+
+    <!-- 拖拽box1，实现
+            鼠标按下开始拖拽
+            鼠标移动，元素跟着鼠标走
+            鼠标松开，元素固定到当前位置 -->
+
+    <script type="text/javascript">
+
+        window.onload = function () {
+            // 获取box1
+            var box1 = document.getElementById('box1');
+
+            // 给box1绑定一个鼠标按下的事件
+            box1.onmousedown = function (event) {
+                // 处理兼容性的问题
+                event = event || window.event;
+                // clientX鼠标指针的水平坐标
+                // clientY鼠标的垂直坐标
+                // 为了确保移动后鼠标和小方块的相对位置不变，需要做以下几步
+
+                // 1、明确如果将鼠标的横纵坐标设置为小方块的横纵向偏移量的样式
+                // 2、我们只能控制小方块向左向上移到对的位置
+                // 3、左移距离 = 鼠标.clentX - 元素.offsetLeft/ 上移距离 = 鼠标.clentY - 元素.offsetTop
+                // 4、移动时候的方块的左边距 = 鼠标.clentX - 左移的距离/ 移动时候的方块的上边距 = 鼠标.clentX - 上移的距离
+
+                // 先算鼠标按下时候，小方块需要偏移的偏移量
+                var offL = event.clientX - box1.offsetLeft;
+                var offT = event.clientY - box1.offsetTop;
+
+                document.onmousemove = function (event) {
+                    event = event || window.event;
+
+                    // 算出来box1左上的偏移量
+                    var left = event.clientX - offL;
+                    var top = event.clientY - offT;
+
+                    // 修改box1的位置
+                    box1.style.left = left + 'px';
+                    box1.style.top = top + 'px';
+                };
+
+                // 鼠标松开，解除所有事件
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                };
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="box1"></div>
+</body>
+
+</html>

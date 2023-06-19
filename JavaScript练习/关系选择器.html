@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关系选择器</title>
+
+    <style>
+        div > span{
+            color: green;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <span>first span</span>
+        <!-- 哪怕div里面套一个div只要符合 div > span 就会变样式 -->
+        <div>
+            <span>second span</span>
+        </div>
+    </div>
+    <div>
+        <span>span3</span>
+    </div>
+</body>
+</html>

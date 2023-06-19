@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>推拽函数版</title>
+
+    <style>
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            position: absolute;
+        }
+
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background-color: lightcoral;
+            position: absolute;
+            left: 200px;
+            top: 200px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        // obj 拖动的对象
+        function drag(obj) {
+
+            // 给obj绑定一个鼠标按下的事件
+            obj.onmousedown = function (event) {
+
+                // 捕获obj1所有事件
+                // 并解决兼容性问题
+                obj.setCapture && obj.setCapture();
+
+                // 处理兼容性的问题
+                event = event || window.event;
+                // clientX鼠标指针的水平坐标
+                // clientY鼠标的垂直坐标
+                // 为了确保移动后鼠标和小方块的相对位置不变，需要做以下几步
+
+                // 1、明确如果将鼠标的横纵坐标设置为小方块的横纵向偏移量的样式
+                // 2、我们只能控制小方块向左向上移到对的位置
+                // 3、左移距离 = 鼠标.clentX - 元素.offsetLeft/ 上移距离 = 鼠标.clentY - 元素.offsetTop
+                // 4、移动时候的方块的左边距 = 鼠标.clentX - 左移的距离/ 移动时候的方块的上边距 = 鼠标.clentX - 上移的距离
+
+                // 先算鼠标按下时候，小方块需要偏移的偏移量
+                var offL = event.clientX - obj.offsetLeft;
+                var offT = event.clientY - obj.offsetTop;
+
+                document.onmousemove = function (event) {
+                    event = event || window.event;
+
+                    // 算出来obj左上的偏移量
+                    var left = event.clientX - offL;
+                    var top = event.clientY - offT;
+
+                    // 修改obj的位置
+                    obj.style.left = left + 'px';
+                    obj.style.top = top + 'px';
+                };
+
+                // 鼠标松开，解除所有事件
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+
+                    // 当鼠标松开时，取消对事件的捕获
+                    obj.releaseCapture && obj.releaseCapture();
+                };
+            }
+        }
+
+        window.onload = function(){
+            // 获取元素
+            var box1 = document.getElementById('box1');
+            var box2 = document.getElementById('box2');
+
+            // 拖拽元素
+            drag(box1);
+            drag(box2);
+            
+        }
+    </script>
+</head>
+
+<body>
+
+    <div id="box1"></div>
+    <div id="box2"></div>
+
+</body>
+
+</html>

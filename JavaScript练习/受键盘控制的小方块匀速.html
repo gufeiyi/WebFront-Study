@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>匀速的受键盘控制的小方块</title>
+
+    <style>
+        #box1{
+            width: 100px;
+            height: 100px;
+            background-color: chocolate;
+            position: absolute;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        // 控制速度和方向的事件分开
+
+        // 速度
+        var speed = 10;
+        // 方向
+        var dir = 0;
+
+        // 开启定时器，来控制方向
+        // 定时器一直开着，只要按键符合case中的一个就移动
+
+        setInterval(function(){
+            switch (dir) {
+                    case 37:
+                        // 原来的左边距-每次要移动的距离
+                        box1.style.left = box1.offsetLeft - speed + "px";
+                        break;
+                    case 38:
+                        box1.style.top = box1.offsetTop - speed + "px";
+                        break;
+                    case 39:
+                        box1.style.left = box1.offsetLeft + speed + "px";
+                        break;
+                    case 40:
+                        box1.style.top = box1.offsetTop + speed + "px";
+                        break;
+                }
+        },50);
+
+        // 按键按下，控制速度
+        document.onkeydown = function(event){
+            event = event || window.event;
+
+            if(event.ctrlKey){
+                speed = 100;
+            }else{
+                speed = 10;
+            }
+
+            dir = event.keyCode;
+        };
+
+        document.onkeyup = function(){
+            // 让按键松开的时候停下来
+            dir = 0;
+        }
+
+    </script>
+</head>
+<body>
+    <div id="box1"></div>
+</body>
+</html>

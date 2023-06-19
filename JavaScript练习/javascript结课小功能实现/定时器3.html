@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定时器3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: salmon;
+            position: absolute;
+            /* ie8不设置就是auto，无法计算 */
+            left: 0;
+        }
+
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background-color: chocolate;
+            position: absolute;
+            /* ie8不设置就是auto，无法计算 */
+            left: 0;
+            top: 200px;
+        }
+
+        .line {
+            width: 0;
+            height: 1000px;
+            border-left: 1px solid black;
+            position: absolute;
+            left: 800px;
+            top: 0;
+        }
+    </style>
+
+    <!-- 引入自己写的外部js文件 -->
+    <script type="text/javascript" src="js/tool.js"></script>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var box1 = document.getElementById('box1');
+            var btn01 = document.getElementById('btn01');
+            // 定义timer，不能放到setInterval里面，因为，建一个新的timer，
+            // 立马就把新建的timer消除了，根本没有消除下面的定时器
+            
+            var btn02 = document.getElementById('btn02');
+
+            btn01.onclick = function(){
+                move(box1 , "left" , 800 ,13);
+            };
+
+            btn02.onclick = function(){
+                move(box1 , "left", 0 ,10);
+            };
+
+            var box2 = document.getElementById('box2');
+            var btn03 = document.getElementById('btn03');
+
+            btn03.onclick = function(){
+                move(box2, "left" , 800 , 5)
+            }
+
+            var btn04 = document.getElementById('btn04');
+            btn04.onclick = function(){
+                move(box2, "left" , 300 , 5,function(){
+                    move(box2 , "height" , 200 , 3 , function(){
+                        move(box2 , "width" , 200, 3 , function(){
+                            move(box2 , "top" , 500 , 5 ,function(){
+
+                            });
+                        });
+                    });
+                });
+            };
+
+        };
+    </script>
+</head>
+
+<body>
+    <button id="btn01">点击按钮以后box1向右移动</button>
+    <button id="btn02">点击按钮以后box1向左移动</button>
+    <button id="btn03">点击按钮以后box2向右移动</button>
+    <button id="btn04">测试按钮</button>
+
+    <br><br>
+
+    <div id="box1"></div>
+    <div id="box2"></div>
+
+    <!-- 右边的终点线 -->
+    <div class="line"></div>
+</body>
+
+</html>

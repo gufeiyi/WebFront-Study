@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定时器2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: salmon;
+            position: absolute;
+            /* ie8不设置就是auto，无法计算 */
+            left: 0;
+        }
+
+        .line {
+            width: 0;
+            height: 1000px;
+            border-left: 1px solid black;
+            position: absolute;
+            left: 800px;
+            top: 0;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var box1 = document.getElementById('box1');
+            var btn01 = document.getElementById('btn01');
+            // 定义timer，不能放到setInterval里面，因为，建一个新的timer，
+            // 立马就把新建的timer消除了，根本没有消除下面的定时器
+            
+            var btn02 = document.getElementById('btn02');
+
+            btn01.onclick = function(){
+                move(box1 , 800 ,13);
+            };
+
+            btn02.onclick = function(){
+                move(box1 , 0 ,10);
+            };
+
+        };
+        var timer;
+        // 把小方块的移动整成一个函数
+
+        /* 参数：
+            obj：移动的对象
+            target:目标位置
+            speed： 移动速度
+            speed：移动的速度(正值就可以) */
+        function move(obj, target,speed) {
+            // 关闭定时器，防止一直点开启好多个定时器加速
+            clearInterval(timer);
+
+            // 元素当前的位置
+            var current = parseInt(getStyle(obj,"left"));
+
+            // 判断speed值正负
+            // 右移 speed+
+            //      不用管，直接用用户传进来的speed
+            // 左移 speed-
+            //      判断一下是否是左移（target <-  current）
+            //      也就是target < current  这时候让速度取反
+            if(target < current){
+                speed = -speed;
+            }
+
+            // 开启定时器，执行动画效果
+            timer = setInterval(function () {
+                var oldValue = parseInt(getStyle(obj, "left"));
+                // speed会根据current和target的大小，自动改变正负
+                var newValue = oldValue + speed;
+
+                // 确保最后一定到终点线，而不是越线一段距离
+                // 分两种情况：
+                // 1、小方块左移（speed<0），移动的距离超了终点(newValue <target)，让小方块最后的终点 = 设置终点
+                // 2、右移刚好相反
+
+                if(speed < 0 && newValue <target || speed > 0 && newValue >target){
+                    newValue = target;
+                }
+                // 将新值设置给box1
+                obj.style.left = newValue + 'px';
+
+                // 等到了终点，关闭定时器，让小方块停下来
+                if (newValue == target) {
+                    clearInterval(timer);
+                }
+            }, 30);
+        }
+
+        // 获取元素当前样式的函数
+        /* 
+            参数：
+                obj： 元素
+                name： 要获取的样式名 */
+        function getStyle(obj, name) {
+            // 正常浏览器获得样式的方法
+            if (window.getComputedStyle) {
+                return getComputedStyle(obj, null)[name];
+            } else {
+                // IE8的方式
+                return obj.currentStyle[name];
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button id="btn01">点击按钮以后box1向右移动</button>
+    <button id="btn02">点击按钮以后box1向左移动</button>
+
+    <br><br>
+
+    <div id="box1"></div>
+
+    <!-- 右边的终点线 -->
+    <div class="line"></div>
+</body>
+
+</html>
