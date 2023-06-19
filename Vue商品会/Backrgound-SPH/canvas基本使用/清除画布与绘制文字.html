@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        canvas{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <!-- 宽高不能用样式设置的原因：坐标体系会发生变化 -->
+    <canvas width="600" height="400"></canvas>
+</body>
+</html>
+<script>
+    // 获取节点
+    let canvas = document.querySelector('canvas');
+    // 获取上下文
+    let context = canvas.getContext('2d');
+    // 绘制矩形
+    context.fillRect(100,200,100,200);
+
+    // 清除部分画布
+    context.clearRect(100,200,50,100);
+    // 设置文字大小
+    context.font = '20px 微软雅黑';
+    context.fillStyle = 'skyblue'
+    // 绘制文字
+    context.fillText('数据可视化',50,20);
+</script>

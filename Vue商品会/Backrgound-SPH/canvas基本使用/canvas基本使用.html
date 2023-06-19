@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        canvas{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <!-- canvas 画布：是HTML5中新增的一个特性，是双闭合标签 -->
+    <!-- canvas标签默认宽高300 * 150 -->
+    <!-- 浏览器认为canvas标签是一张图片 -->
+    <!-- 给canvas标签加任何文字或者子节点都是没有任何意义的 -->
+    <!-- 如果想操作canvas画布，在画布中绘制图形显示文字，都必须用js -->
+    <!-- canvas标签务必用width和height标签去设置宽高，不能通过样式去设置宽高 -->
+    <canvas width="600" height="400"></canvas>
+</body>
+</html>
+
+<script>
+    // 获取画布
+    let canvas = document.querySelector('canvas');
+    // 获取笔
+    let context = canvas.getContext('2d');
+    // 绘制线段起点
+    context.moveTo(100,100);
+    // 绘制其他电
+    context.lineTo(100,200);
+    context.lineTo(200,100);
+    // 填充颜色
+    context.fillStyle = "blue";
+    context.fill();
+
+    // 设置线段的颜色
+    context.strokeStyle = "pink";
+    context.lineWidth = "5"
+    // 起点和终点连接在一起
+    context.closePath();
+    // 画线段
+    context.stroke();
+</script>

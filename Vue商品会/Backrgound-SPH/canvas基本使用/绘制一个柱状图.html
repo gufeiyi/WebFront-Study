@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        canvas{
+            
+        }
+    </style>
+</head>
+<body>
+    <canvas width="800" height="420"></canvas>
+</body>
+</html>
+<script>
+    let canvas = document.querySelector('canvas');
+    let context = canvas.getContext('2d');
+
+    // 绘制文本
+    context.font = '16px 微软雅黑';
+    context.fillText('数据可视化', 50,80);
+
+    // 绘制线段(坐标轴)
+    context.moveTo(100,100);
+    context.lineTo(100,400);
+    context.lineTo(700,400);
+    context.stroke();
+
+    // 绘制五条横线
+    context.moveTo(100,100);
+    context.lineTo(700,100);
+    context.fillText('150',70,110);
+
+    context.moveTo(100,160);
+    context.lineTo(700,160);
+    context.fillText('120',70,170);
+
+    context.moveTo(100,220);
+    context.lineTo(700,220);
+    context.fillText('90',70,230);
+
+    context.moveTo(100,280);
+    context.lineTo(700,280);
+    context.fillText('60',70,290);
+
+    context.moveTo(100,340);
+    context.lineTo(700,340);
+    context.fillText('30',70,350);
+    context.fillText('0',70,400);
+    context.stroke();
+
+    // 水平轴底部的小竖线
+    context.moveTo(250,400);
+    context.lineTo(250,410);
+
+    // 底部的文字
+    context.fillText('食品',170,415);
+
+    context.moveTo(400,400);
+    context.lineTo(400,410);
+    context.fillText('数码',310,415);
+
+    context.moveTo(550,400);
+    context.lineTo(550,410);
+    context.fillText('服饰',450,415);
+    context.fillText('箱包',600,415);
+    context.stroke();
+
+    // 绘制矩形
+    context.fillStyle = 'red';
+    context.fillRect(120,200,100,200);
+</script>

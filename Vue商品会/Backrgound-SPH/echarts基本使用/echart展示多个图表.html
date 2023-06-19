@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.1.2/echarts.js"></script>
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 800px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 准备一个容器：图片显示的区域 -->
+    <div class="box1"></div>
+    <div class="box2"></div>
+</body>
+</html>
+<script>
+    // 获取dom节点
+    let dom1 = document.querySelector('.box1');
+    let dom2 = document.querySelector('.box2');
+    // 创建echarts实例
+    let myCharts1 = echarts.init(dom1);
+    let myCharts2 = echarts.init(dom2);
+    myCharts1.setOption({
+        // 图标的标题
+        title:{
+            text:'数据可视化',
+            // 子标题
+            subtext:'echarts基本使用',
+            // 主标题的颜色
+            textStyle:{
+                color:'skyblue'
+            },
+            // 设置标题的位置
+            left:'center'
+        },
+        // x轴的配置项
+        xAxis:{
+            // 数据
+            data:["衣服",'直播','游戏','电影']
+        },
+        // y轴的配置项
+        yAxis:{
+            // 显示y轴的线
+            axisLine:{
+                show:true
+            },
+            // 显示y轴的刻度
+            axisTick:{
+                show:true
+            }
+        },
+        // 系列的设置：
+        series:[
+            {
+                // 图表类型的设置 line bar pie
+                type:'bar',
+                // 分类数据的设置
+                data:[10,20,30,40],
+                color:'skyblue'
+            }
+        ]
+    })
+    myCharts2.setOption({
+        title:{
+            text:"折线图",
+            left:"center",
+            textStyle:{
+                color:'red'
+            },
+            subtext:'echarts基本使用',
+            subtextStyle:{
+                color:'red'
+            }
+        },
+        // x轴
+        xAxis:{
+            data:['星期一','星期二','星期三','星期四','星期五','星期六','星期日']
+        },
+        yAxis:{},
+        // 图标的类型以及数据
+        series:[
+            {
+                type:'line',
+                data:[10,20,15,33,45,66,33],
+                color:'red'
+            }
+        ]
+    })
+</script>

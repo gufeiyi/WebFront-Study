@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        canvas{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+</body>
+</html>
+<script>
+    // 获取DOM节点
+    let canvas = document.querySelector('canvas');
+    // 获取上下文
+    let context = canvas.getContext('2d');
+    // 绘制矩形第一种方式
+    // 四个数值 起点x y 宽 高
+    context.strokeRect(100,200,100,200);
+
+    // 绘制矩形第二种，默认填充颜色为黑色
+    // 可修改填充颜色
+    context.fillStyle = 'cyan';
+    context.fillRect(300,200,100,200);
+</script>

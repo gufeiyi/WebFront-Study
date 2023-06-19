@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.1.2/echarts.js"></script>
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 准备一个容器：图片显示的区域 -->
+    <div></div>
+</body>
+</html>
+<script>
+    // 获取dom节点
+    let dom = document.querySelector('div');
+    // 创建echarts实例
+    let myCharts = echarts.init(dom);
+
+    // 双坐标系
+    myCharts.setOption({
+        title:{
+            text:'双坐标系'
+        },
+        xAxis:{
+            data:['吃饭','睡觉','打豆豆','over']
+        },
+        // 双坐标轴，一个x轴，两个y轴
+        yAxis:[
+            {
+                // 显示y轴的线
+                axisLine:{
+                    show:true
+                },
+                // 显示y轴的刻度
+                axisTick:{
+                    show:true
+                }
+            },
+            {
+                // 显示y轴的线
+                axisLine:{
+                    show:true
+                },
+                // 显示y轴的刻度
+                axisTick:{
+                    show:true
+                }
+            }
+        ],
+        series:[
+            {
+                type:'line',
+                data:[10,20,30,40],
+                // 用的是索引值为0的y轴
+                yAxisIndex:0
+            },
+            {
+                type:'bar',
+                data:[10,50,30,90],
+                // 用的是索引值为1的y轴
+                yAxisIndex:1
+            }
+        ]
+    })
+
+</script>
