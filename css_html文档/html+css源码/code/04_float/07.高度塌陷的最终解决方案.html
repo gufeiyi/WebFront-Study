@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box1{
+            border: 10px red solid;
+
+            /* overflow: hidden; */
+        }
+
+        .box2{
+            width: 100px;
+            height: 100px;
+            background-color: #bfa;
+            float: left;
+        }
+
+        .box3{
+            /* 清除box1对box3的所有影响(浮动的影响)
+                底层原理：在box3上面自动加一个margin-top */
+            clear: both;
+        }
+        /* 选中的位置是box2后面的位置 
+            之所以用after，是因为只想用css解决样式的问题
+            不想让div3也就是html语言解决结构的问题*/
+        .box1::after{
+            content: '';
+            /* 选中的位置默认是行内元素，转换成块元素 */
+            display: block;
+            clear: both;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="box1">
+        <div class="box2"></div>
+        <!-- <div class="box3"></div> -->
+    </div>
+    
+</body>
+</html>

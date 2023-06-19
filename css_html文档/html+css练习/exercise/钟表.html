@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>钟表</title>
+
+    <style>
+        /* 设置表的样式 */
+        .clock{
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+            margin-top: 50px;
+            /* background-color: aqua; */
+            border-radius: 50%;
+            /* 开启绝对定位 */
+            position: relative;
+            background-image: url(./img/bg.png);
+            /* 让图片的大小覆盖整个容器 */
+            background-size: cover;
+        }
+
+        /* 让所有的容器都居中 */
+        .clock > div{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+
+        }
+        /* 设置时针的旋转 */
+
+        .hour-wrapper{
+            width: 50%;
+            height: 50%;
+            /* background-color: orange; */
+            /* 让正方形围绕z轴旋转起来 */
+            /* linear 继续宁匀速运动 */
+            animation: roll 43200s linear infinite ;
+
+        }
+
+        .hour-wrapper .hour{
+            width: 6px;
+            height: 50%;
+            background-color: black;
+            margin: 0 auto;
+
+        }
+
+        /* 设置分针的旋转 */
+
+        .min-wrapper{
+            width: 70%;
+            height: 70%;
+            /* background-color: orange; */
+            /* 让正方形围绕z轴旋转起来 */
+            animation: roll 3600s steps(60) infinite ;
+
+        }
+
+        .min-wrapper .min{
+            width: 4px;
+            height: 50%;
+            background-color: black;
+            margin: 0 auto;
+
+        }
+
+        /* 设置秒针的旋转 */
+
+        .sec-wrapper{
+            width: 90%;
+            height: 90%;
+            /* background-color: orange; */
+            /* 让正方形围绕z轴旋转起来 */
+            /* 一步一格的走 */
+            animation: roll 60s steps(60) infinite ;
+
+        }
+
+        .sec-wrapper .sec{
+            width: 2px;
+            height: 50%;
+            background-color: yellow;
+            margin: 0 auto;
+
+        }
+
+        /* 设置旋转的关键帧 */
+        @keyframes roll{
+            from{
+                transform: rotate(0);
+            }
+
+            to{
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 创建钟表的容器 -->
+    <div class="clock">
+        <!-- 里面存放时针、分针、秒针 -->
+        <!-- 这三个针是放在一个正方体里面，以正方体的中点为端点
+                到上边做个细长的长方体作为指针，让正方体旋转，
+                指针便跟着旋转 -->
+        <!-- 放时针的正方体 -->
+        <div class="hour-wrapper">
+            <!-- 时针 -->
+            <div class="hour"></div>
+        </div>
+        <!-- 放分针的正方体 -->
+        <div class="min-wrapper">
+            <!-- 分针 -->
+            <div class="min"></div>
+        </div>
+        <!-- 放秒针的正方体 -->
+        <div class="sec-wrapper">
+            <!-- 秒针 -->
+            <div class="sec"></div>
+        </div>
+    </div>
+</body>
+</html>

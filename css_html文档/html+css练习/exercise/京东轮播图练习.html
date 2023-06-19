@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京东轮播图静态页面</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <style>
+        .img-list{
+            /* 只有设置的图片的容器是图片的大小，
+                才能正好让图片显示在整个屏幕的正中央 */
+            /* 设置别的值不能使其居中，因为虽然容器边框看不见，但是图片总是 */
+            width: 590px;
+            height: 470px;
+            margin: 100px auto;
+            /* 开启相对定位,可以使得导航点相对于整个图片定位,而不是整个页面  */
+            position: relative;
+        }
+        .img-list .pic{
+            /* 只有打开绝对定位以后，
+                    所有的图片从文档流中脱离，产生重叠效果 */
+            position: absolute;
+        }
+
+        /* 修改图片的层级来显示指定的图片 */
+        .img-list .pic:nth-child(5){
+            z-index: 1;
+        }
+
+        /* 设置导航点的位置 */
+        .pointer{
+            /* 因为图片已经脱离了文档流，
+                    要想让点显示出来，必须让点也脱离文档流 */
+            position: absolute;
+            /* 确保导航点在整个图片的最上面 */
+            z-index: 9999;
+            /* 把导航点放在左下角 */
+            bottom: 20px;
+            left: 40px;
+
+
+        }
+
+        /* 设置导航点的样式 */
+        .img-list .pointer a{
+            float: left;
+            width: 10px;
+            height: 10px;
+            margin: 0px 2px;
+            /* 把方块变成小圆点 */
+            border-radius: 50%;
+            /* 颜色设置 */
+            background-color: rgba(255,255,255,.3);
+            /* 设置width、height、background-color、border之后才能显示 */
+            border: 2px solid transparent;
+            /* 设置了这个之后,产生了虚化效果 */
+            background-clip: content-box;
+        }
+
+        .pointer a.active,
+        .pointer a:hover{
+            background-color: white;
+            border: 2px solid rgba(255,255,255,.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="img-list">
+        <div class="pointer">
+            <!-- 里面的.采用行内元素 -->
+            <a class="active" href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+        </div>
+        <!-- 所有的图片用块元素，
+                如果用li来存放图片的话，就不用每个div都存class了 -->
+        <div class="pic">
+            <img src="./img/JDCircle/1.jpg" alt="">
+        </div>
+        <div class="pic">
+            <img src="./img/JDCircle/2.jpg" alt="">
+        </div>
+        <div class="pic">
+            <img src="./img/JDCircle/3.jpg" alt="">
+        </div>
+        <div class="pic">
+            <img src="./img/JDCircle/4.jpg" alt="">
+        </div>
+        <div class="pic">
+            <img src="./img/JDCircle/5.jpg" alt="">
+        </div>
+        <div class="pic">
+            <img src="./img/JDCircle/6.jpg" alt="">
+        </div>
+        <div class="pic">
+            <img src="./img/JDCircle/7.jpg" alt="">
+        </div>
+        <div class="pic">
+            <img src="./img/JDCircle/8.jpg" alt="">
+        </div>
+    </div>  
+    
+    
+</body>
+</html>

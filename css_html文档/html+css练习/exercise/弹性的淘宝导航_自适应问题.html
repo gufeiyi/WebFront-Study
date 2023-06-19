@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹性淘宝导航</title>
+    <link rel="stylesheet" href="./css/reset.css">
+
+    <style>
+
+        /* 外层容器 */
+        .nav{
+            /* 屏幕多大容器多大 */
+            width: 100%;
+        }
+
+        /* 因为分两行排列,块元素默认独占一行,所以不给外层容器设置弹性
+            内部容器是横向排列的,并且需要撑开外部容器,就使用外部容器 */
+        .nav-inner{
+            display: flex;
+            /* 默认是元素多大占多高 */
+            /* 沾满一行和外部的nav一致 */
+            /* background-color: #bfa; */
+            /* 设置空白边距 */
+            /* 设置成两边空出一样大的地方 */
+            justify-content: space-around;
+        }
+
+        .item{
+            /* 每个一小块占整个屏幕的百分之十八 */
+            /* 屏幕总会流出百分之十的间隙,不管多大 */
+            width: 18%;
+            /* background-color: orange; */
+            /* 让字居中 */
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .item img{
+            /* 让图片永远充满整个li */
+            width: 100%;
+        }
+
+        .item a{
+            color: black;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .item span{
+            display: block;
+            margin-top: 5px;
+            
+        }
+
+
+
+    </style>
+
+</head>
+<body>
+    <div class="nav">
+        <div class="nav-inner">
+            <div class="item">
+                <a href="#">
+                    <img src="./img/taobao/1.png" alt="">
+                    <span>天猫</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="./img/taobao/2.png" alt="">
+                    <span>聚划算</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="./img/taobao/3.png" alt="">
+                    <span>天猫国际</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="./img/taobao/4.png" alt="">
+                    <span>外卖</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="./img/taobao/5.png" alt="">
+                    <span>天猫超市</span>
+                </a>
+            </div>
+        </div>
+        <div class="nav-inner">
+            <div class="item">
+                <a href="#">
+                    <img src="./img/taobao/6.png" alt="">
+                    <span>充值中心</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="./img/taobao/7.png" alt="">
+                    <span>飞猪旅行</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="./img/taobao/8.png" alt="">
+                    <span>领金币</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="./img/taobao/9.png" alt="">
+                    <span>拍卖</span>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <img src="./img/taobao/10.png" alt="">
+                    <span>分类</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

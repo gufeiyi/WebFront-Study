@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>按钮练习</title>
+    <style>
+        /* 雪碧图的实现 */
+        /* 解决图片闪烁的问题 */
+        a:link{
+            /* 把a行内元素变成块元素 */
+            display: block;
+            width: 93px;
+            height: 29px;
+            background-image: url('./img/button/btn.png');
+        }
+
+        a:hover{
+            background-position: -93px 0;
+        }
+
+        a:active{
+            background-position: -186px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="#"></a>
+</body>
+</html>

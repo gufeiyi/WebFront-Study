@@ -1,0 +1,202 @@
+// 设置所有a标签的样式
+a{
+    text-decoration: none;
+    color: #fff;
+
+    &:hover{
+        color: rgb(197, 196, 196);
+    }
+}
+
+// 设置导航条外部的容器
+.top-bar-wrapper{
+    background-color: #000;
+    .top-bar{
+        // 设置最大宽度，超过这个宽度就不撑开了
+        max-width: 1200px;
+        // 居中
+        margin: 0 auto;
+        height: 48px;
+        padding: 0 14px;
+        // 让菜单栏、logo还有用户信息横着展示
+        display: flex;
+        // 让元素垂直居中
+        align-items: center;
+        // 空白地方在元素的中间平均分配
+        justify-content: space-between;
+
+        // 设置左侧导航
+        .left-menu{
+            // 设置左侧图标的三个杠
+            .menu-icon{
+                width: 18px;
+                height: 48px;
+                position: relative;
+
+                // 导航线
+                li{
+                    width: 18px;
+                    height: 1px;
+                    background-color: #fff;
+                    // 修改变形的原点才可以使上下两条线交叉
+                    transform-origin: left center;
+                    transition: 0.5s;
+                    // 打开绝对定位才能设置top
+                    position: absolute;
+                    &:nth-child(1){
+                        top:18px;
+                    }
+    
+                    &:nth-child(2){
+                        top:24px;
+                    }
+    
+                    &:nth-child(3){
+                        top:30px;
+                    }
+                }
+
+                // 鼠标点击之后两条线交叉，中间线消失
+                &:active{
+                    li:nth-child(1){
+                        // 向下旋转
+                        transform: rotateZ(40deg);
+                    }
+
+                    li:nth-child(2){
+                        // 消失
+                        // 全透明
+                        opacity: 0;
+                    }
+
+                    li:nth-child(3){
+                        transform: rotateZ(-40deg);
+                    }
+                }
+                
+            }
+
+            // 设置菜单
+            .nav{
+                display: none;
+                background-color: #000;
+                // 重新设置菜单的位置
+                position: absolute;
+                // 从导航栏下面开始
+                top: 48px;
+                // 充满下面整个屏幕
+                left: 0;
+                bottom: 0;
+                right: 0;
+                padding-top: 60px;
+
+                li{
+                    // 占整个屏幕的百分比
+                    width: 80%;
+                    // 居中
+                    margin: 0 auto;
+                    // 下边框
+                    border-bottom: 1px solid #757474;
+
+                    a{
+                        // 变成块元素，点的时候就是整一行
+                        display: block;
+                        line-height: 44px;
+                        font-size: 14px;
+                    }
+
+                    // 不让搜索图案独占一行
+                    &:last-child a{
+                        display: inline-block;
+                        margin-right: 6px;
+                    }
+                    span{
+                        color: #fff;
+                        font-size: 14px;
+                    }
+                }
+            }
+
+            // 点击左侧菜单的时候，显示左侧导航栏
+            &:active{
+                .nav{
+                    display: block;
+                }
+            }
+        }
+
+        .logo{
+            a{
+                // 把文字隐藏起来，让搜索引擎看
+                text-indent: -9999px;
+                display: block;
+                // 容器的宽高设置为原来的一半
+                width: 122px;
+                height: 32px;
+                background-image: url('../img/dff63979.sprites-index@2x.png');
+                // 将图片缩放到一半
+                background-size: 400px 400px;
+            }
+        }
+    }
+}
+
+// 设置媒体查询
+@media only screen{
+    // 设置断点宽度
+    @media (min-width: 768px){
+        // 修改左侧菜单栏的位置
+        .left-menu{
+            // 修改三个元素的位置
+            order:2;
+            flex: auto;
+            // 隐藏菜单的图标三个杠
+            .menu-icon{
+                display: none;
+            }
+
+            // 不知道为啥，识别不了
+            // 我猜nav是关键字，再加上，.表示强调
+            // 产生了语义歧义，可能和less的改进有关系
+            /* .nav{
+                display: flex;
+            } */
+        }
+        .logo{
+            order:1;
+        }
+        .user-info{
+            order: 3;
+        }
+
+        // 不知道为啥，系统找不到.nav.不得已写到了外面
+        .top-bar-wrapper .top-bar .left-menu .nav {
+            // 横向排列
+            display: flex;
+            // 把之前的绝对定位关了，让菜单还在整个头部里
+            position:static;
+            padding: 0;
+            // 让每个li之间的距离根据屏幕宽度自动分配
+            justify-content: space-around;
+            li{
+                // 把之前定的宽度取消掉
+                width: auto;
+                // 把下边框取消掉
+                border-bottom: none;
+                // 把每个li的间距都取消掉
+                margin: 0;
+
+                /* a{
+                    // line-height: 48px;
+                } */
+
+                span{
+                    // 只留下搜索的图，把字去掉
+                    display: none;
+                }
+            }
+        }
+
+        
+    }
+}

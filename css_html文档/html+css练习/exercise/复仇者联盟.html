@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复仇者联盟</title>
+
+    <style>
+        /* 要想做出3D效果必须设置眼到屏幕的距离 */
+        html {
+            perspective: 800px;
+        }
+
+        /* 先设置正方体的大小 */
+        .cube{
+            width: 200px;
+            height: 200px;
+            /* background-color: #bfa; */
+            margin: 100px auto;
+            /* 默认近大远小，但是是2d效果 */
+            /* 设置3d变形效果 */
+            transform-style: preserve-3d;
+            /* transform: rotateX(45deg) rotateZ(45deg); */
+            animation: rotate 15s infinite linear;
+        }
+
+        /* 设置所有元素的共同效果 */
+        .cube > div {
+            width: 200px;
+            height: 200px;
+            /* 设置元素的透明效果 */
+            opacity: 0.7;
+            /* 让所有元素重叠起来 */
+            position: absolute;
+        }
+
+        .box1{
+            /* 1作为正方体的右边 */
+            /* 设置变形 */
+            /* xyz轴是相对于图片来说的，图片的正面朝着的方向是z轴 */
+            transform: rotateY(90deg) translateZ(100px);
+            
+        }
+
+        .box2{
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+
+        .box3{
+            transform: rotateX(90deg) translateZ(100px);
+        }
+
+        .box4{
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+
+        /* 后面*/
+        .box5{
+            transform: rotateY(180deg) translateZ(100px);
+        }
+
+        /* 前面 */
+        .box6{
+            transform: rotateX(0deg) translateZ(100px);
+        }
+
+        /* 设置关键帧 */
+        @keyframes rotate{
+            form{
+                transform: rotateX(0) rotateZ(0);
+            }
+            to{
+                transform: rotateX(360deg) rotateZ(360deg);            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cube">
+        <div class="box1">
+            <img src="./img/superman/1.jpg" alt="">
+        </div>
+        <div class="box2">
+            <img src="./img/superman/2.jpg" alt="">
+        </div>
+        <div class="box3">
+            <img src="./img/superman/3.jpg" alt="">
+        </div>
+        <div class="box4">
+            <img src="./img/superman/4.jpg" alt="">
+        </div>
+        <div class="box5">
+            <img src="./img/superman/5.jpg" alt="">
+        </div>
+        <div class="box6">
+            <img src="./img/superman/6.jpg" alt="">
+        </div>
+    </div>
+    
+</body>
+</html>

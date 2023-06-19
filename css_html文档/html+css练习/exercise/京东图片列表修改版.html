@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京东图片列表修改</title>
+    <link rel="stylesheet" href="./css/reset.css">
+
+    <style>
+        body{
+            background-color: oldlace;
+        }
+
+        .img-list{
+            width: 190px;
+            height: 470px;
+            /* 照片溢出的部分裁剪掉 */
+            overflow: hidden;
+            /* 距离顶部50px，左右居中 */
+            margin: 50px auto;
+            background-color: aliceblue;
+        }
+        /* 对图片进行布局的时候最好使用块元素，不要用行内元素 */
+        .img-list li{
+            /* 对块元素进行margin,border,padding设置*/
+            margin-bottom: 9px;
+            
+        }
+
+        .img-list img{
+            /* 图片就只设置图片的样式 */
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- 进行布局的时候，最好使用块元素，不要用行内元素，
+            ul和li属于块元素，而img属于行内元素 -->
+    <ul class="img-list">
+        <li>
+            <!-- img外面宝哥a标签就可以实现跳转 -->
+            <a href="javascript:;">
+                <img src="./img/JDList2/1.jpg">
+            </a>
+        </li>
+        <li>
+            <a href="javascript:;">
+                <img src="./img/JDList2/2.jpg">
+            </a>
+        </li>
+        <li>
+            <a href="javascript:;">
+                <img src="./img/JDList2/3.jpg">
+            </a>
+        </li>
+    </ul>
+</body>
+</html>

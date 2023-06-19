@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>背景重复</title>
+    <style>
+        .box1{
+            width: 990px;
+            height: 32px;
+            /* 让背景居中 */
+            margin: 0 auto;
+            background-image: url('./img/background/bg.png');
+            /* 一个神奇的现象，我没设置x轴重复，自己就重复了 */
+            /* background-repeat: repeat-x; */
+        }
+    </style>
+</head>
+<body>
+    <!-- 功能介绍：用一个1像素的图，
+            将它平铺，形成一个渐变色的导航条 -->
+    <div class="box1"></div>
+</body>
+</html>

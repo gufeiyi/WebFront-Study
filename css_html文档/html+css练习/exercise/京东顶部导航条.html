@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京东顶部导航条</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./fa/css/all.css">
+    <style>
+
+        /* 解决因为子元素从文档流中脱离，导致高度塌陷的问题 */
+        /* 现在好像没有高度塌陷的问题了，不确定，再看看 */
+        .clearfix::before,
+        .clearfix::after{
+            content: '';
+            display: table;
+            clear: both;
+        }
+        body{
+            /* 设置文字 */
+            font:12px/1.5 Microsoft YaHei,Heiti SC,tahoma,arial,Hiragino Sans GB,"\5B8B\4F53",sans-serif;
+        }
+        /* 设置外部容器样式 */
+        .top-bar-wrapper{
+            width: 100%;
+            background-color: #E3E4E5;
+            height: 30px;
+            /* 使得内部容器垂直居中，
+                就是让行高和容器的高度一样 */
+            line-height: 30px;
+            /* 设置下边框 */
+            border-bottom: 1px #ddd solid;
+        }
+
+        /* 设置内部容器的样式 */
+        .top-bar{
+            /* 固定宽度 */
+            width: 1190px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* 设置字体样式  */
+
+        /* 一般样式 */
+        .top-bar a,
+        .top-bar span,
+        .top-bar i{
+            /* 改变导航内所有的字体颜色 */
+            color: #999;
+            /* 去除掉下划线的样式 */
+            text-decoration: none;
+        }
+
+        /* 变红的样式 */
+        .top-bar a:hover,
+        .top-bar a.highlight{
+            color: #f10215;
+        }
+        /* 设置location */
+        .location{
+            /* 水平方向排列 从左到右*/
+            float: left;
+        }
+
+        /* 让location下的小图标变红 */
+        .location .fas{
+            color: #f10215;
+        }
+
+        .location .city-list{
+            /* 平时将城市列表框隐藏起来 */
+            display: none;
+            width: 320px;
+            height: 436px;
+            background-color: white;
+            border: 1px solid rgb(204,204,204);
+
+            /* 现在这个框在文档流中，会挤占下面的组块空间
+                    所以要设置绝对定位，让其脱离文档流 */
+            position: absolute;
+
+            /* 设置其层级，确保其显示的时候一直在整个页面最上层 */
+            z-index: 999;
+            /* 让框框上移，上面current-city的框框盖住下面city-list的框框 */
+            top: 31px;
+
+            /* 设置阴影，让盒子看起来更立体 */
+            box-shadow: 0 2px 2px rgba(0, 0, 0, .2);
+        }
+
+        /* 当鼠标移入的时候，让列表框显示出来 */
+        .location:hover .city-list{
+            display: block;
+        }
+
+        /* 设置current-city的效果 */
+        .current-city{
+            /* 给左右边框来点距离 */
+            padding: 0 10px;
+            border: 1px solid transparent;
+            border-bottom: none;
+
+            /* 不显示白色可能是被盖住了，让current-city从文档流中出来
+                    放在最上面一层 */
+            position: relative;
+            z-index: 9999;
+
+
+        }
+
+        /* 设置移入current-city的效果 */
+        .location:hover .current-city{
+            /* 移入框框字体之所以会左右浮动是因为我把边框加到了这里 */
+            background-color: white;
+            border: 1px solid rgb(204, 204, 204);
+            border-bottom: none;
+            padding-bottom: 1px;
+        }
+        /* 设置shortcut */
+        .shortcut{
+            /* 水平方向排列 从右到左 */
+            /* 指的是外面的边框 */
+            float: right;
+        }
+
+        /* 设置li */
+        .shortcut li{
+            /* 水平方向排列 从左到右 */
+            /* 指的是里面的a标签 */
+            float: left;
+        }
+
+        /* 设置分割线 */
+        .shortcut .line{
+            width: 1px;
+            height: 10px;
+            background-color: rgb(204,202,202);
+            /* 可以直接上下左右间隔12px，因为设置了上边距，
+                    下边距就算设置了也自动调整了 */
+            margin: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 外围容器 -->
+    <div class="top-bar-wrapper">
+        <!-- 内部容器 -->
+        <div class="top-bar clearfix">
+            <!-- 左侧容器 -->
+            <div class="location">
+                <!-- 当前显示的城市 -->
+                <div class="current-city">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <a href="#">北京</a>
+                </div>
+                <!-- 显示城市列表的div -->
+                <div class="city-list">
+
+                </div>
+            </div>
+            <!-- 右侧容器 -->
+            <ul class="shortcut clearfix">
+                <li>
+                    <a href="#">你好，请登录</a>
+                    <a href="#" class="highlight">免费注册</a>
+                </li>
+                <!-- 分割线 -->
+                <li class="line"></li>
+                <li>
+                    <a href="#">我的订单</a>
+                </li>
+                <li class="line"></li>
+                <li>
+                    <a href="#">我的京东</a>
+                    <i class="fas fa-angle-down"></i>
+                </li>
+                <li class="line"></li>
+                <li>
+                    <a href="#">京东会员</a>
+                </li>
+                <li class="line"></li>
+                <li>
+                    <a href="#" class="highlight">企业采购</a>
+                    <i class="fas fa-angle-down"></i>
+                </li>
+                <li class="line"></li>
+
+                <!-- 客户服务、网站导航和手机京东不需要跳转页面
+                        用span包住 -->
+                <li>
+                    <span>客户服务</span>
+                    <i class="fas fa-angle-down"></i>
+                </li>
+                <li class="line"></li>
+                <li>
+                    <span>网站导航</span>
+                    <i class="fas fa-angle-down"></i>
+                </li>
+                <li class="line"></li>
+                <li>
+                    <span>手机京东</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

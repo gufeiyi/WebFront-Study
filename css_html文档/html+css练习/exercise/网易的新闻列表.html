@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网易的新闻列表</title>
+    <link rel="stylesheet" href="./css/reset.css">
+
+    <style>
+        /* body{
+            background-color:aliceblue;
+        } */
+
+        .wangyi-List{
+            width: 300px;
+            height: 357px;
+            background-color: white;
+            margin: 50px auto;
+
+            /* 设置上边框 */
+            border-top: 1px solid #ddd;
+        }
+
+        h1{
+            /* 为了边框和文字宽度一致，所以将h1转换为行内块元素 */
+            display: inline-block;
+            height: 30px;
+            border-top: 1px solid red;
+            /* 为了h1的上边框和总区块的上边框重叠 */
+            margin-top: -1px;
+            font-style: 15px;
+            /* 和上边空开一段距离 */
+            padding-top: 10px;
+            /* 设置颜色 */
+            color: #40406B;
+            /* 让字体加粗 */
+            font-weight: bold;
+        }
+        /* 给照片和解说文字所在的Li设置一个行高，这样，下面的Li就不会顶上来了 */
+        .firstLi{
+            height: 150px;
+        }
+
+        .picText{
+            margin-top: -32px;
+            color:white;
+            /* 设置字体加粗 */
+            font-weight: bold;
+            /* 让字体在中间显示 */
+            padding-left: 30px;
+        }
+
+        
+        .notfistLi{
+            /* 让下面的li和上面隔开一段距离 */
+            margin-top: 20px;
+        }
+
+        li a{
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* 选中有阴影 */
+        /* .notfistLi:hover{
+            background-color:#d9d9d9;
+        } */
+
+        /* 给每一行的前面加一个块块 */
+        .notfistLi::before{
+            content: '■';
+            color: rgb(218,218,218);
+            font-size: 3px;
+            /* 和右边的字体分开一些 */
+            margin-right: 4px;
+        }
+
+        /* 选中字体颜色变红 */
+        .notfistLi a:hover{
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <ul class="wangyi-List">
+        <h1>体育</h1>
+        <li class="firstLi">
+            <a href="#"><img src="./img/WYList/1.jpeg" alt=""></a>
+            <div class="picText">费德勒首负迪米 扶额摇头不满发挥</div>
+        </li>
+        <li class="notfistLi">
+            <a href="#">乔治:我爱LA喜欢和LBJ一起打球</a>
+        </li>
+        <li class="notfistLi">
+            <a href="#">格林:3年前降薪就在等KD 特制T恤嘲讽LBJ</a>
+        </li>
+        <li class="notfistLi">
+            <a href="#">塔克4000双鞋让保罗羡慕嫉妒 乔丹被震惊</a>
+        </li>
+        <li class="notfistLi">
+            <a href="#">CBA下季新赛制:常规赛4组循环 增至46轮</a>
+        </li>
+    </ul>
+</body>
+</html>

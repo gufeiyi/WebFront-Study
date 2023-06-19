@@ -1,0 +1,208 @@
+// 用来设置手机端的样式布局
+// 去除默认样式的影响
+*{
+    margin: 0;
+    padding: 0;
+}
+// 设置变量
+// 屏幕的宽度
+@total-width:750;
+// 设置根元素
+html{
+    // 设置rem的比值
+    // 相当于fontsize为40px
+    font-size: (100vw/@total-width * 40);
+    background-color: #eff0f4;
+}
+
+
+// 所有元素的公共布局
+.w{
+    width: (693/40rem);
+    // 居中
+    margin: 0 auto;
+}
+
+
+
+// 去掉所有a标签的下划线
+a{
+    text-decoration: none;
+}
+
+// 设置header头部的布局
+.top-bar:extend(.w){
+    // 让元素水平排列
+    display: flex;
+    // background-color: orange;
+    // 设置高度
+    height: (175/40rem);
+    // 让文字居中
+    line-height: (175/40rem);
+    // 主轴对齐方式
+    justify-content: space-between;
+    // 辅轴的对齐方式
+    align-items: center;
+
+    // 设置字体的样式
+    a{
+        color: #24253d;
+        // 爱学习字的大小
+        font-size: (50/40rem);
+
+        // 左右两个图标的大小
+        i{
+            color: #999;
+            font-size: (35/40rem);
+        }
+    }
+}
+
+// 设置banner
+.banner:extend(.w){
+    img{
+        width: 100%;
+    }
+}
+
+// 设置中间的菜单
+.menu:extend(.w){
+    height: (329/40rem);
+    display: flex;
+    // 水平排列+换行
+    // 新的布局方式
+    flex-flow: row wrap;
+    // 主轴的对齐方式
+    justify-content: space-between;
+    // 辅轴的对齐方式
+    align-content: space-evenly;
+
+    // 设置框的大小
+    a{
+        width: (327/40rem);
+        height: (104/40rem);
+        background-color: orange;
+        // 上下居中
+        line-height: (104/40rem);
+        color: white;
+        border-radius: (10/40rem);
+
+        i{
+            margin: 0 (20/40rem) 0 (38/40rem);
+        }
+    }
+
+    .course{
+        background-color: #f97053;
+    }
+
+    .star{
+        background-color: #cd6efe;
+    }
+
+    .sub{
+        background-color: #fe4478;
+    }
+
+    .download{
+        background-color: #1bc4fb;
+    }
+}
+
+// 设置课程列表
+.course-list:extend(.w){
+    height: (394/40rem);
+    // background-color: orange;
+    // 打开弹性容器，但是还让元素纵向排列
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    // 让每个课程列表的大框之间都间隔一段距离
+    margin-bottom: (46/40rem);
+
+    .title{
+        // 让分类和更多横向排列
+        display: flex;
+        // 让更多和分类左右两边分布
+        justify-content: space-between;
+        // 让更多和分类两个字垂直居中
+        align-items: center;
+
+        // 设置分类的样式
+        h2{
+            font-size: (33/40rem);
+            color: #24253d;
+            // 加个左边框
+            border-left: (4/40rem) solid #3a84ff;
+            padding-left: (15/40rem);
+        }
+
+        // 设置更多的样式
+        a{
+            font-size: (28/40rem);
+            color: #656565;
+        }
+    }
+}
+
+// 设置课程简介封面的大框
+.item-list{
+    width: (720/40rem);
+    // 水平分布
+    display: flex;
+    // 多项课程水平排列，但是让它自己有一个滚动条去滚动
+    overflow: auto;
+    .item{
+        // 让弹性容器没有弹性
+        flex:none;
+        // 就让宽和高是整个容器的宽高
+        box-sizing: border-box;
+        width: (320/40rem);
+        height: (324/40rem);
+        padding: 0 (22/40rem);
+        background-color: #fff;
+        box-shadow: 0 0 (10/40rem) rgba(0,0,0,.3);
+        border-radius: 5px;
+        // 打开弹性容器是为了设置布局
+        display: flex;
+        flex-flow: column;
+        // 让空白空间均匀的分布在元素的周围
+        justify-content: space-evenly;
+        // 让每个课程和另一个课程间隔一段距离
+        margin-right: (24/40rem);
+
+        // 设置照片
+        img{
+            width: 100%;
+            // 去掉图片的白边
+            vertical-align: top;
+        }
+
+        // 设置课程标题
+        .course-title{
+            font-size: (32/40rem);
+            color: #24253d;
+        }
+
+        // 设置用户信息的容器
+
+        .user-info{
+            // 横向排列
+            display: flex;
+            // 纵向居中
+            align-items: center;
+            // 头像
+            .avatar{
+                width: (42/40rem);
+                height: (42/40rem);
+            }
+            // 用户的昵称
+            .nickname{
+                // 和头像间隔一段距离
+                margin-left: (10/40rem);
+                font-size: (24/40rem);
+                color: #969393;
+            }
+        }
+    }
+}
