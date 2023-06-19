@@ -1,0 +1,67 @@
+<!-- pages/video/video.wxml -->
+<view class="videoContainer">
+    <!-- 头部区域 -->
+    <view class="header">
+        <image src="/static/images/video/video.jpg" />
+        <view class="search" bindtap="toSearch">搜索音乐</view>
+        <image src="/static/images/logo.png" />
+    </view>
+    <!-- 导航区域 -->
+    <!-- scroll-into-view ： 让点击的导航条在第一位 -->
+    <scroll-view 
+    
+        scroll-into-view="{{'scroll'+navId}}" 
+        scroll-x 
+        class="navScroll" 
+        enable-flex
+        scroll-with-animation="true"
+    >
+        <view id="{{'scroll'+ item.id}}" class="navItem" wx:for="{{videoGroupList}}" wx:key="id">
+            <view class="navContent {{navId == item.id?'active':''}}" bindtap="changeNav" id="{{item.id}}">
+                {{item.name}}
+            </view>
+        </view>
+    </scroll-view>
+    <!-- 视频的列表区 -->
+    <!-- bindrefresherrefresh下拉列表的回调 -->
+    <!-- refresher-triggered下来列表是否显示true或false -->
+    <!-- bindscrolltolower上拉滚动的回调函数 -->
+    <scroll-view 
+        scroll-y 
+        class="videoscroll"
+        refresher-enabled
+        bindrefresherrefresh="hanleRefresher"
+        refresher-triggered="{{isTriggered}}"
+        bindscrolltolower="handleTolower"
+    >
+        <view class="videoItem" wx:for="{{ddtList}}" wx:key="id">
+            <!-- 用的是自己的代码 -->
+            <!-- <image src="{{item.data.coverUrl}}" /> -->
+            <!-- 用的是别人的代码，但是还是不出视频 -->
+            <video 
+                class="common"
+                src="{{item.videoUrl}}"
+                bindplay="handlePlay"
+                id="{{item.id}}"
+                poster="{{item.coverUrl}}"
+                wx:if="{{videoId === item.id}}"
+                object-fit="fill"
+                bindtimeupdate="handleTimeUpdate"
+                bindended="handleEnded"
+            ></video>
+
+            <!-- 性能优化： 使用image图片去代替video标签 -->
+            <image wx:else bindtap="handlePlay" id="{{item.id}}" class="common" src="{{item.coverUrl}}" />
+            <view class="footer" enable-flex>
+                <view class="userInfo">
+                    <image src="{{item.creator.avatarUrl}}" />
+                    <view class="nickname">{{item.creator.nickname}}</view>
+                </view>
+                <!-- open-type: 转发的功能 -->
+                <button open-type="share" class="itemBtn">
+                    <text class="iconfont icon-androidgengduo"></text>
+                </button>
+            </view>
+        </view>
+    </scroll-view>
+</view>

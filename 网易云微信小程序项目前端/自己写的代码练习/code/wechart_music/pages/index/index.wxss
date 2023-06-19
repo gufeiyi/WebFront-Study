@@ -1,0 +1,139 @@
+/* pages/index/index.wxss */
+
+.banners{
+  width: 100%;
+  height: 300rpx;
+}
+
+.banners image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 五个图标的导航区域 */
+.navContainer {
+  display: flex;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+}
+
+.navItem .iconfont {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 100rpx;
+  background: rgb(240, 19, 19);
+  font-size: 52rpx;
+  color: #fff;
+  margin: 20rpx 0;
+}
+
+.navItem text {
+  font-size: 26rpx;
+}
+
+/* 推荐歌曲 */
+.recommendContainer {
+  padding: 20rpx;
+}
+
+/* 推荐内容区的样式 */
+.recommendScroll {
+  display: flex;
+  /* 虽然组块横向排列了，但是高度还是纵向撑开的 */
+  height: 300rpx;
+  margin-top: 15rpx;
+}
+
+.header {
+  margin-bottom: 20rpx;
+}
+
+.srcollItem {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+
+.srcollItem image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+}
+
+.srcollItem text{
+  font-size: 26rpx;
+  /* 单行文本溢出 */
+  /* display: block; */
+  /* 不换行 */
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+
+  /* 多行文本溢出隐藏 省略号代替 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;/* 设置对齐的模式 */
+  -webkit-line-clamp: 2;/* 设置多行的行数 */
+}
+
+/* 排行榜 */
+.topList {
+  padding: 20rpx;
+}
+
+.topListSwiper {
+  /* 让整个图片显示全 */
+  height: 400rpx;
+}
+
+.swiperItem {
+  width: 96%;
+  background-color: #FBFBFB;
+}
+
+.swiperItem .title {
+  font-size: 30rpx;
+  line-height: 80rpx;
+}
+
+.musicItem {
+  /* 一个元素设置为flex，其子元素会自动变成block元素，并且水平排列 */
+  display: flex;
+  margin-bottom: 15rpx;
+}
+
+.musicItem image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 6rpx;
+
+}
+
+.musicItem .count {
+  width: 100rpx;
+  height: 100rpx;
+  /* 水平居中 */
+  text-align: center;
+  /* 垂直居中 */
+  line-height: 100rpx;
+}
+
+.musicItem .musicName {
+  height: 100rpx;
+  line-height: 100rpx;
+  /* 最大宽度 */
+  max-width: 400rpx;
+  /* 单行文本溢出 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

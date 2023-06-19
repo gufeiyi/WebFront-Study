@@ -1,0 +1,46 @@
+/* 外部容器大小 */
+.indexContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #66ccff;
+  height: 100%;
+}
+
+/* 照片大小 */
+.avatarUrl{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  margin: 100rpx 0;
+  
+}
+
+/* 登录按钮的设置 */
+.login{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  margin: 100rpx 0;
+  font-size: 22rpx;
+  line-height: 200rpx;
+  text-align: center;
+}
+
+
+/* 用户姓名 */
+.userName{
+  font-size: 32rpx;
+  margin: 100rpx 0;
+}
+
+/* 文本信息 */
+.goStudy{
+  width: 300rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 28rpx;
+  border: 1rpx solid #333;
+  border-radius: 10rpx;
+}

@@ -1,0 +1,12 @@
+<view class="indexContainer">
+<!-- vx:if是条件渲染 -->
+  <image wx:if="{{userInfo.avatarUrl}}" class="avatarUrl" src="{{userInfo.avatarUrl}}"></image>
+  <!-- 首次获得用户信息 open-type-->
+  <!-- 获得用户信息调取的回调函数  -->
+<button class="login" wx:else bindgetuserinfo="handleGetUserInfo" open-type="getUserInfo">获取用户信息</button>
+  <text class="userName">{{userInfo.nickName}}</text>
+
+  <view class="goStudy">
+    <text>hello world!</text>
+  </view>
+</view>

@@ -1,0 +1,10 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#66ccff",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "Li First study"
+  }
+}

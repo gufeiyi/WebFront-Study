@@ -1,0 +1,6 @@
+/* 注意引入的时候一定要加; */
+@import "/static/images/iconfont/iconfont.wxss";
+
+page {
+    height:100%;
+}

@@ -1,0 +1,143 @@
+/* pages/search/search.wxss */
+
+/* 整个搜索框的容器 */
+.searchContainer {
+    padding: 0 20rpx;
+}
+
+/* 头部的搜索区域 */
+.header {
+    display: flex;
+    height: 60rpx;
+    line-height: 60rpx;
+    padding: 10rpx 0;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 15rpx;
+
+}
+
+.searchInput {
+    /* 自动拉伸 */
+    position: relative;
+    flex: 1;
+    background-color: rgba(237, 237, 237, .3);
+    border-radius: 30rpx;
+}
+
+.searchInput input {
+    margin-left: 50rpx;
+    /* 确保垂直居中 */
+    height: 60rpx;
+}
+.placeholder {
+    /* color: #d43c33; */
+    font-size: 28rpx;
+}
+
+.clear {
+    position: absolute;
+    z-index: 10;
+    right: 30rpx;
+    top: 0;
+    font-size: 30rpx;
+}
+
+.cancel {
+    width: 100rpx;
+    text-align: center;
+}
+
+/* 搜索内容的提示 */
+.searchContent {
+    color: #d43c33;
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 24rpx;
+    border-bottom: 1rpx solid #d43c33;
+}
+
+.searchItem {
+    height: 80rpx;
+    line-height: 80rpx;
+    display: flex;
+}
+
+.searchItem .content {
+    flex: 1;
+    margin-left: 20rpx;
+    border-bottom: 1rpx solid #eee;
+    font-size: 26rpx;
+}
+
+/* 搜索历史板块 */
+.history {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 50rpx;
+    margin: 20px 0;
+}
+
+.history .title {
+    height: 50rpx;
+    font-size: 28rpx;
+    
+}
+
+.history .historyItem {
+    height: 50rpx;
+    font-size: 26rpx;
+    background-color: #ededed;
+    margin-left: 20rpx;
+    padding: 0 30rpx;
+    border-radius: 20rpx;
+    margin-bottom: 20rpx;
+}
+
+.history .delete {
+    position: absolute;
+    bottom: 10rpx;
+    right: 15rpx;
+    font-size: 36rpx;
+}
+
+/* 热搜榜 */
+
+/* 热搜榜的头部 */
+.hotContainer {
+    /* display: flex; */
+    margin-top: 20rpx;
+}
+.hotContainer .title {
+    font-size: 28rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    border-bottom: 1rpx solid #eee;
+}
+
+/* 热搜列表 */
+.hotList {
+    display: flex;
+    /* 开启换行 */
+    flex-wrap: wrap;
+}
+
+.hotItem {
+    width: 50%;
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 26rpx;
+}
+
+.hotItem .order {
+    margin: 0 10rpx;
+}
+
+.hotItem .iconImg{
+    width: 35rpx;
+    height: 20rpx;
+    margin-left: 25rpx;
+}
